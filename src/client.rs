@@ -186,6 +186,7 @@ impl Client {
         interface: impl Interface,
     ) -> ResultType<((Stream, bool, Option<Vec<u8>>), (i32, String))> {
         debug_assert!(peer == interface.get_id());
+        log::warn!("11111111111111111111");
         interface.update_direct(None);
         interface.update_received(false);
         match Self::_start(peer, key, token, conn_type, interface).await {
@@ -645,6 +646,7 @@ impl Client {
         conn_type: ConnType,
         ipv4: bool,
     ) -> ResultType<Stream> {
+        log::warn!("22222222222222222 {:?}-{:?}-{:?}-{:?}",peer,relay_server,RELAY_PORT,ipv4);
         let mut conn = connect_tcp(
             ipv4_to_ipv6(check_port(relay_server, RELAY_PORT), ipv4),
             CONNECT_TIMEOUT,
